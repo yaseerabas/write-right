@@ -15,6 +15,11 @@ dist-ssr
 # Environment variables
 .env
 
+# Internal AI assistant files
+.agents/
+AI_RULES.md
+SKILL.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
