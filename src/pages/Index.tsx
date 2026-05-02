@@ -14,7 +14,6 @@ import { OutputPanel } from "@/components/OutputPanel";
 import { QuickPromptBar } from "@/components/QuickPromptBar";
 import { HistoryDrawer } from "@/components/HistoryDrawer";
 import { KeyboardShortcutsHelp } from "@/components/KeyboardShortcutsHelp";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useAsyncOperation } from "@/hooks/useAsyncOperation";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
@@ -589,12 +588,7 @@ const Index = () => {
                   <img
                     src="/write-right-light.png"
                     alt="WriteRight"
-                    className="h-8 sm:h-9 w-auto dark:hidden"
-                  />
-                  <img
-                    src="/write-right-dark.png"
-                    alt="WriteRight"
-                    className="h-8 sm:h-9 w-auto hidden dark:block"
+                    className="h-8 sm:h-9 w-auto"
                   />
                 </div>
                 <div className="min-w-0">
@@ -606,7 +600,6 @@ const Index = () => {
               <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
                 <KeyboardShortcutsHelp />
                 <HistoryDrawer onRestoreEntry={handleRestoreHistoryEntry} />
-                <ThemeToggle />
                 <SettingsModal />
               </div>
             </div>
@@ -617,8 +610,8 @@ const Index = () => {
           {/* Configuration Alert */}
           {!isConfigured && (
             <Alert className="mb-5 sm:mb-7 border-amber-500/20 bg-amber-500/5">
-              <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-              <AlertDescription className="text-amber-800 dark:text-amber-400 text-sm">
+              <AlertTriangle className="h-4 w-4 text-amber-600" />
+              <AlertDescription className="text-amber-800 text-sm">
                 Backend server is not configured. Please set the LLM environment variables on the server.
               </AlertDescription>
             </Alert>

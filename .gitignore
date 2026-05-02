@@ -18,7 +18,7 @@ dist-ssr
 # Internal AI assistant files
 .agents/
 AI_RULES.md
-SKILL.md
+DESIGN.md
 
 # Editor directories and files
 .vscode/*

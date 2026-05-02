@@ -36,7 +36,7 @@ export const CharacterCounter = ({
           isAtLimit
             ? "text-destructive"
             : isNearLimit
-              ? "text-amber-600 dark:text-amber-400"
+              ? "text-amber-600"
               : "text-muted-foreground",
         )}
       >
@@ -49,7 +49,7 @@ export const CharacterCounter = ({
             "transition-colors font-medium",
             isAtLimit
               ? "text-destructive"
-              : "text-amber-600 dark:text-amber-400",
+              : "text-amber-600",
           )}
         >
           {isAtLimit ? "Limit reached" : "Getting close to limit"}

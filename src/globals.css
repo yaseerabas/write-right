@@ -4,85 +4,45 @@
 
 @layer base {
     :root {
-        /* Warm off-white background, single sophisticated blue accent */
-        --background: 40 10% 97%;
-        --foreground: 220 15% 15%;
+        /* Forest Floor palette */
+        --background: 45 34% 86%;
+        --foreground: 152 27% 16%;
 
-        --card: 40 10% 99%;
-        --card-foreground: 220 15% 15%;
+        --card: 45 46% 93%;
+        --card-foreground: 152 27% 16%;
 
-        --popover: 40 10% 99%;
-        --popover-foreground: 220 15% 15%;
+        --popover: 45 46% 93%;
+        --popover-foreground: 152 27% 16%;
 
-        --primary: 220 65% 48%;
-        --primary-foreground: 0 0% 100%;
+        --primary: 24 57% 51%;
+        --primary-foreground: 45 46% 93%;
 
-        --secondary: 40 8% 94%;
-        --secondary-foreground: 220 15% 15%;
+        --secondary: 130 8% 39%;
+        --secondary-foreground: 45 46% 93%;
 
-        --muted: 40 8% 92%;
-        --muted-foreground: 220 8% 45%;
+        --muted: 45 20% 90%;
+        --muted-foreground: 130 8% 35%;
 
-        --accent: 220 65% 48%;
-        --accent-foreground: 0 0% 100%;
+        --accent: 24 57% 51%;
+        --accent-foreground: 45 46% 93%;
 
-        --destructive: 0 72% 51%;
-        --destructive-foreground: 0 0% 100%;
+        --destructive: 0 60% 50%;
+        --destructive-foreground: 45 46% 93%;
 
-        --border: 40 8% 88%;
-        --input: 40 8% 88%;
-        --ring: 220 65% 48%;
+        --border: 130 8% 75%;
+        --input: 130 8% 75%;
+        --ring: 24 57% 51%;
 
-        --radius: 0.625rem;
+        --radius: 1rem;
 
-        --sidebar-background: 40 10% 97%;
-        --sidebar-foreground: 220 15% 15%;
-        --sidebar-primary: 220 65% 48%;
-        --sidebar-primary-foreground: 0 0% 100%;
-        --sidebar-accent: 40 8% 94%;
-        --sidebar-accent-foreground: 220 15% 15%;
-        --sidebar-border: 40 8% 88%;
-        --sidebar-ring: 220 65% 48%;
-    }
-
-    .dark {
-        /* Off-black background, warmer dark tones */
-        --background: 220 12% 5%;
-        --foreground: 40 8% 92%;
-
-        --card: 220 12% 8%;
-        --card-foreground: 40 8% 92%;
-
-        --popover: 220 12% 8%;
-        --popover-foreground: 40 8% 92%;
-
-        --primary: 220 70% 58%;
-        --primary-foreground: 220 12% 5%;
-
-        --secondary: 220 12% 12%;
-        --secondary-foreground: 40 8% 92%;
-
-        --muted: 220 12% 15%;
-        --muted-foreground: 220 8% 55%;
-
-        --accent: 220 70% 58%;
-        --accent-foreground: 220 12% 5%;
-
-        --destructive: 0 62% 50%;
-        --destructive-foreground: 0 0% 100%;
-
-        --border: 220 12% 15%;
-        --input: 220 12% 15%;
-        --ring: 220 70% 58%;
-
-        --sidebar-background: 220 12% 5%;
-        --sidebar-foreground: 40 8% 92%;
-        --sidebar-primary: 220 70% 58%;
-        --sidebar-primary-foreground: 220 12% 5%;
-        --sidebar-accent: 220 12% 12%;
-        --sidebar-accent-foreground: 40 8% 92%;
-        --sidebar-border: 220 12% 15%;
-        --sidebar-ring: 220 70% 58%;
+        --sidebar-background: 45 34% 86%;
+        --sidebar-foreground: 152 27% 16%;
+        --sidebar-primary: 24 57% 51%;
+        --sidebar-primary-foreground: 45 46% 93%;
+        --sidebar-accent: 45 20% 90%;
+        --sidebar-accent-foreground: 152 27% 16%;
+        --sidebar-border: 130 8% 75%;
+        --sidebar-ring: 24 57% 51%;
     }
 }
 
@@ -140,21 +100,13 @@
     background-size: 256px 256px;
 }
 
-.dark .noise-overlay::before {
-    opacity: 0.04;
-}
-
 /* ============================================
    Custom Scrollbars — Tinted to match palette
    ============================================ */
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: hsl(220 8% 70% / 0.3) transparent;
-}
-
-html.dark {
-    scrollbar-color: hsl(220 8% 40% / 0.3) transparent;
+    scrollbar-color: hsl(130 8% 60% / 0.3) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -167,20 +119,12 @@ html.dark {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: hsl(220 8% 70% / 0.3);
+    background: hsl(130 8% 60% / 0.3);
     border-radius: 100px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: hsl(220 8% 70% / 0.5);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-    background: hsl(220 8% 40% / 0.3);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: hsl(220 8% 40% / 0.5);
+    background: hsl(130 8% 60% / 0.5);
 }
 
 ::-webkit-scrollbar-corner {
@@ -189,11 +133,7 @@ html.dark {
 
 .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: hsl(220 8% 70% / 0.3) transparent;
-}
-
-.dark .custom-scrollbar {
-    scrollbar-color: hsl(220 8% 40% / 0.3) transparent;
+    scrollbar-color: hsl(130 8% 60% / 0.3) transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -206,18 +146,10 @@ html.dark {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: hsl(220 8% 70% / 0.3);
+    background: hsl(130 8% 60% / 0.3);
     border-radius: 100px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: hsl(220 8% 70% / 0.5);
-}
-
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: hsl(220 8% 40% / 0.3);
-}
-
-.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: hsl(220 8% 40% / 0.5);
+    background: hsl(130 8% 60% / 0.5);
 }

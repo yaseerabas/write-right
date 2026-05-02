@@ -88,21 +88,21 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
   };
 
   return (
-    <Card className="dark:bg-gray-800/50 dark:border-gray-700">
+    <Card>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-          <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+          <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
           Quick Prompts
         </CardTitle>
 
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search prompts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 text-sm dark:bg-gray-900 dark:border-gray-600"
+            className="pl-10 text-sm"
           />
         </div>
 
@@ -131,7 +131,7 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
       </CardHeader>
       <CardContent className="space-y-2 max-h-[250px] sm:max-h-[300px] overflow-y-auto custom-scrollbar">
         {filteredPrompts.length === 0 ? (
-          <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">No prompts found</p>
+          <p className="text-sm text-muted-foreground text-center py-4">No prompts found</p>
         ) : (
           filteredPrompts.map((prompt) => {
             const Icon = prompt.icon;
@@ -139,17 +139,17 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
             return (
               <div
                 key={prompt.id}
-                className="group p-2.5 sm:p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-200 dark:hover:border-blue-700 border border-transparent transition-all duration-200"
+                className="group p-2.5 sm:p-3 bg-muted/50 rounded-lg cursor-pointer hover:bg-primary/5 hover:border-primary/20 border border-transparent transition-all duration-200"
                 onClick={() => onPromptSelect(prompt.text)}
               >
                 <div className="flex items-start gap-2">
-                  <Icon className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <Icon className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
+                    <p className="text-sm text-foreground group-hover:text-primary transition-colors">
                       {prompt.text}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
-                      <Badge variant="secondary" className="text-xs dark:bg-gray-600 dark:text-gray-300">
+                      <Badge variant="secondary" className="text-xs">
                         {prompt.category}
                       </Badge>
                       <button
@@ -159,7 +159,7 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
                         }}
                         className="opacity-0 group-hover:opacity-100 transition-opacity"
                       >
-                        <Star className={`h-3.5 w-3.5 ${isFav ? 'text-yellow-500 fill-yellow-500' : 'text-gray-400'}`} />
+                        <Star className={`h-3.5 w-3.5 ${isFav ? 'text-yellow-500 fill-yellow-500' : 'text-muted-foreground'}`} />
                       </button>
                       {prompt.isCustom && (
                         <button
@@ -167,7 +167,7 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
                             e.stopPropagation();
                             removeCustomPrompt(prompt.id);
                           }}
-                          className="opacity-0 group-hover:opacity-100 transition-opacity text-xs text-red-500 hover:text-red-600"
+                          className="opacity-0 group-hover:opacity-100 transition-opacity text-xs text-destructive hover:text-destructive/80"
                         >
                           Remove
                         </button>
@@ -187,7 +187,7 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
               placeholder="Enter your custom prompt..."
               value={customPromptText}
               onChange={(e) => setCustomPromptText(e.target.value)}
-              className="text-sm dark:bg-gray-900 dark:border-gray-600"
+              className="text-sm"
               autoFocus
             />
             <div className="flex gap-2">
@@ -200,7 +200,7 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
             variant="ghost"
             size="sm"
             onClick={() => setShowAddCustom(true)}
-            className="w-full gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+            className="w-full gap-2 text-muted-foreground hover:text-foreground"
           >
             <Plus className="h-4 w-4" />
             Add Custom Prompt
