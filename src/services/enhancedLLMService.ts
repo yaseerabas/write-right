@@ -25,7 +25,10 @@ class EnhancedLLMService {
 
   private getCacheKey(type: string, input: string, params?: string): string {
     const normalizedInput = input.toLowerCase().trim().replace(/\s+/g, ' ');
-    return `${type}:${btoa(normalizedInput)}:${params || ''}`;
+    // Use encodeURIComponent before btoa to safely handle Unicode characters
+    // (btoa alone only supports Latin1 range)
+    const encodedInput = btoa(encodeURIComponent(normalizedInput));
+    return `${type}:${encodedInput}:${params || ''}`;
   }
 
   private getFromCache(key: string): string | null {
