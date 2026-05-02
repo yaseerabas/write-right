@@ -158,7 +158,7 @@ const Index = () => {
     ) => {
       const configured = await enhancedLLMService.isConfigured();
       if (!configured) {
-        showError("Please configure your LLM API settings first");
+        showError("Backend server is not configured. Please check your server environment variables.");
         return;
       }
 
@@ -619,8 +619,7 @@ const Index = () => {
             <Alert className="mb-5 sm:mb-7 border-amber-500/20 bg-amber-500/5">
               <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
               <AlertDescription className="text-amber-800 dark:text-amber-400 text-sm">
-                Configure your LLM API settings to start using the AI features.
-                Open Settings to get started.
+                Backend server is not configured. Please set the LLM environment variables on the server.
               </AlertDescription>
             </Alert>
           )}

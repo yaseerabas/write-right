@@ -1,5 +1,4 @@
-import { llmService, isCORSError } from './llmService';
-import { isLLMConfigured } from '@/config/llm.config';
+import { llmService } from './llmService';
 import { showSuccess, showError } from '@/utils/toast';
 
 interface CacheEntry<T> {
@@ -25,7 +24,6 @@ class EnhancedLLMService {
   };
 
   private getCacheKey(type: string, input: string, params?: string): string {
-    // Create a more robust cache key that handles special characters
     const normalizedInput = input.toLowerCase().trim().replace(/\s+/g, ' ');
     return `${type}:${btoa(normalizedInput)}:${params || ''}`;
   }
@@ -44,7 +42,6 @@ class EnhancedLLMService {
   }
 
   private setCache(key: string, data: string): void {
-    // Implement cache size limit
     if (this.cache.size >= this.MAX_CACHE_SIZE) {
       const firstKey = this.cache.keys().next().value;
       this.cache.delete(firstKey);
@@ -68,13 +65,6 @@ class EnhancedLLMService {
         return await operation();
       } catch (error) {
         lastError = error instanceof Error ? error : new Error(String(error));
-
-        // CORS errors are deterministic — retrying will never succeed.
-        // Fail fast to avoid wasting time and API quota.
-        if (isCORSError(lastError)) {
-          console.error(`Operation ${operationName} aborted: CORS error detected (retries skipped)`);
-          throw lastError;
-        }
 
         if (attempt === this.retryConfig.maxRetries) {
           console.error(`Operation ${operationName} failed after ${this.retryConfig.maxRetries + 1} attempts:`, lastError);
@@ -117,7 +107,6 @@ class EnhancedLLMService {
     return this.retryOperation(async () => {
       const result = await llmService.generateText(prompt, tone, length);
 
-      // Validate result
       if (!result || result.trim().length === 0) {
         throw new Error('Empty response received from AI service');
       }
@@ -142,12 +131,10 @@ class EnhancedLLMService {
     return this.retryOperation(async () => {
       const result = await llmService.editText(text, instruction);
 
-      // Validate result
       if (!result || result.trim().length === 0) {
         throw new Error('Empty response received from AI service');
       }
 
-      // Check if result is actually different from input for edit operations
       if (result.trim() === text.trim()) {
         console.warn('Edit operation returned unchanged text');
       }
@@ -158,7 +145,7 @@ class EnhancedLLMService {
   }
 
   public async summarizeText(text: string): Promise<string> {
-    this.validateInput(text, 50); // Require minimum text for summarization
+    this.validateInput(text, 50);
 
     const cacheKey = this.getCacheKey('summarize', text);
     const cached = this.getFromCache(cacheKey);
@@ -171,12 +158,10 @@ class EnhancedLLMService {
     return this.retryOperation(async () => {
       const result = await llmService.summarizeText(text);
 
-      // Validate result
       if (!result || result.trim().length === 0) {
         throw new Error('Empty response received from AI service');
       }
 
-      // Summary should be shorter than original
       if (result.length >= text.length) {
         console.warn('Summary is longer than original text');
       }
@@ -199,38 +184,16 @@ class EnhancedLLMService {
     };
   }
 
-  public isConfigured(): boolean {
-    return isLLMConfigured();
+  public isConfigured(): Promise<boolean> {
+    return llmService.isConfigured();
   }
 
-  /**
-   * Reload settings from config and clear cache.
-   */
   public reloadSettings(): void {
-    llmService.reloadSettings();
-    this.clearCache();
-  }
-
-  /**
-   * @deprecated Settings now come from env/config. Kept for API compatibility.
-   */
-  public setSettings(settings: { provider: string; modelId: string; apiKey: string; baseUrl: string }): void {
-    llmService.setSettings(settings);
     this.clearCache();
   }
 
   public async testConnection(): Promise<boolean> {
-    if (!this.isConfigured()) {
-      return false;
-    }
-
-    try {
-      await this.generateText('Test connection', 'professional', 'short');
-      return true;
-    } catch (error) {
-      console.error('Connection test failed:', error);
-      return false;
-    }
+    return this.isConfigured();
   }
 }
 

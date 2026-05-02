@@ -9,9 +9,7 @@ vi.mock('@/services/llmService', () => ({
     editText: vi.fn(),
     summarizeText: vi.fn(),
     isConfigured: vi.fn(),
-    reloadSettings: vi.fn(),
   },
-  isCORSError: vi.fn(() => false),
 }));
 
 describe('EnhancedLLMService', () => {
@@ -101,6 +99,15 @@ describe('EnhancedLLMService', () => {
       await enhancedLLMService.generateText('prompt', 'professional', 'medium'); // Should make new call
 
       expect(llmService.generateText).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('isConfigured', () => {
+    it('should return backend configuration status', async () => {
+      vi.mocked(llmService.isConfigured).mockResolvedValue(true);
+      const result = await enhancedLLMService.isConfigured();
+      expect(result).toBe(true);
+      expect(llmService.isConfigured).toHaveBeenCalled();
     });
   });
 });
