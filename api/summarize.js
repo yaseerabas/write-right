@@ -1,4 +1,32 @@
-import { client, modelId, getBody, json } from './_lib/client.js';
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: process.env.LLM_API_KEY || '',
+  baseURL: process.env.LLM_BASE_URL || 'https://api.openai.com/v1',
+});
+
+const modelId = process.env.LLM_MODEL_ID || 'gpt-3.5-turbo';
+
+async function getBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', (chunk) => { body += chunk; });
+    req.on('end', () => {
+      try {
+        resolve(JSON.parse(body || '{}'));
+      } catch {
+        resolve({});
+      }
+    });
+    req.on('error', reject);
+  });
+}
+
+function json(res, status, data) {
+  res.statusCode = status;
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(data));
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
