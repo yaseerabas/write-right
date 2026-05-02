@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
@@ -88,7 +88,6 @@ app.post('/edit', async (req: Request, res: Response) => {
 
     let specificPrompt = instruction;
 
-    // Map common instructions to detailed prompts
     const instructionMap: Record<string, string> = {
       'Improve clarity and readability':
         'Rewrite this text to make it clearer and easier to understand. Use simpler words and better sentence structure while maintaining the original meaning.',
@@ -164,6 +163,14 @@ app.post('/summarize', async (req: Request, res: Response) => {
       error: error instanceof Error ? error.message : 'Failed to summarize text',
     });
   }
+});
+
+// Global error handler — catch anything that slips through
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({
+    error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error',
+  });
 });
 
 export default app;
