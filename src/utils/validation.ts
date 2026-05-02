@@ -74,9 +74,10 @@ export function validateUrl(url: string): ValidationResult {
 }
 
 export function sanitizeInput(input: string): string {
+  // Remove dangerous/null control characters while preserving formatting:
+  // \x09 (tab), \x0A (newline), \x0D (carriage return) are kept.
+  // \x00-\x08, \x0B-\x0C, \x0E-\x1F, \x7F are stripped.
   return input
-    .trim()
-    .replace(/[\x00-\x1F\x7F]/g, '') // Remove control characters
-    .replace(/\s+/g, ' ') // Normalize whitespace
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
     .slice(0, 10000); // Limit length
 }
