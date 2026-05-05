@@ -88,8 +88,8 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
   };
 
   return (
-    <Card>
-      <CardHeader className="pb-3">
+    <Card className="flex flex-col min-h-0 flex-1">
+      <CardHeader className="pb-3 shrink-0">
         <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
           <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
           Quick Prompts
@@ -129,7 +129,7 @@ export const QuickPrompts = ({ onPromptSelect }: QuickPromptsProps) => {
           ))}
         </div>
       </CardHeader>
-      <CardContent className="space-y-2 max-h-[250px] sm:max-h-[300px] overflow-y-auto custom-scrollbar">
+      <CardContent className="space-y-2 flex-1 min-h-0 overflow-y-auto custom-scrollbar">
         {filteredPrompts.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-4">No prompts found</p>
         ) : (
