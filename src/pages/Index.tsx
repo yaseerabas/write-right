@@ -584,7 +584,7 @@ const Index = () => {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div className="flex justify-between items-center gap-3">
               <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                <div className="shrink-0">
+                <div className="shrink-0 scale-110 origin-left">
                   <img
                     src="/write-right-light.png"
                     alt="WriteRight"
@@ -833,7 +833,7 @@ const Index = () => {
                                   isGenerating ||
                                   !inputText.trim()
                                 }
-                                className="h-auto p-3 sm:p-4 flex flex-col items-start text-left w-full min-w-0 whitespace-normal hover:bg-primary/5 hover:border-primary/20 transition-all duration-200 group rounded-xl"
+                                className="h-auto p-3 sm:p-4 flex flex-col items-start text-left w-full min-w-0 whitespace-normal hover:bg-primary/5 hover:border-primary/20 hover:text-primary transition-all duration-200 group rounded-xl"
                               >
                                 <div className="flex items-center gap-2 mb-1 sm:mb-2 w-full min-w-0">
                                   <Icon className="h-4 w-4 sm:h-5 sm:w-5 shrink-0 text-primary group-hover:scale-105 transition-transform duration-200" />
