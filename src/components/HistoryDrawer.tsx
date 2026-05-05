@@ -179,16 +179,16 @@ export const HistoryDrawer = ({ onRestoreEntry }: HistoryDrawerProps) => {
           </div>
 
           {/* History List */}
-          <ScrollArea className="flex-1 -mx-6 px-6 custom-scrollbar">
-            {filteredHistory.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
-                <FileText className="h-12 w-12 mb-3 opacity-30" />
-                <p className="text-sm">No history entries yet</p>
-                <p className="text-xs mt-1">Generated text will appear here</p>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {filteredHistory.map((entry) => (
+          <ScrollArea className="flex-1 w-full custom-scrollbar">
+            <div className="space-y-3 pr-2">
+              {filteredHistory.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+                  <FileText className="h-12 w-12 mb-3 opacity-30" />
+                  <p className="text-sm">No history entries yet</p>
+                  <p className="text-xs mt-1">Generated text will appear here</p>
+                </div>
+              ) : (
+                filteredHistory.map((entry) => (
                   <div
                     key={entry.id}
                     className="group p-3 rounded-xl border bg-card hover:bg-muted/60 transition-colors cursor-pointer"
@@ -227,9 +227,9 @@ export const HistoryDrawer = ({ onRestoreEntry }: HistoryDrawerProps) => {
                       </Button>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
+                ))
+              )}
+            </div>
           </ScrollArea>
         </div>
       </SheetContent>
