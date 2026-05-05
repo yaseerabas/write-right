@@ -78,7 +78,7 @@ export const QuickPromptBar = ({
               Browse all
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
+          <DialogContent className="sm:max-w-lg max-h-[85vh]">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2 font-medium">
                 <Sparkles className="h-5 w-5 text-primary" />
