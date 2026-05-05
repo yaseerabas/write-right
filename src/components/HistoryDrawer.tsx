@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
   SheetContent,
@@ -179,8 +178,8 @@ export const HistoryDrawer = ({ onRestoreEntry }: HistoryDrawerProps) => {
           </div>
 
           {/* History List */}
-          <ScrollArea className="flex-1 w-full custom-scrollbar">
-            <div className="space-y-3 pr-2">
+          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden custom-scrollbar">
+            <div className="space-y-3">
               {filteredHistory.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
                   <FileText className="h-12 w-12 mb-3 opacity-30" />
@@ -191,12 +190,12 @@ export const HistoryDrawer = ({ onRestoreEntry }: HistoryDrawerProps) => {
                 filteredHistory.map((entry) => (
                   <div
                     key={entry.id}
-                    className="group p-3 rounded-xl border bg-card hover:bg-muted/60 transition-colors cursor-pointer"
+                    className="group p-3 rounded-xl border bg-card hover:bg-muted/60 transition-colors cursor-pointer overflow-hidden"
                     onClick={() => handleRestore(entry)}
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1.5">
+                      <div className="flex-1 min-w-0 overflow-hidden">
+                        <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                           <Badge variant="secondary" className="text-[10px]">
                             {getToolLabel(entry.toolUsed)}
                           </Badge>
@@ -230,7 +229,7 @@ export const HistoryDrawer = ({ onRestoreEntry }: HistoryDrawerProps) => {
                 ))
               )}
             </div>
-          </ScrollArea>
+          </div>
         </div>
       </SheetContent>
     </Sheet>

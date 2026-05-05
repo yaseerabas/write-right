@@ -84,7 +84,7 @@ export const OutputPanel = ({
               variant="ghost"
               onClick={handleShare}
               disabled={!outputText || isLoading}
-              className="h-8 w-8 rounded-lg transition-all duration-200 hover:bg-primary/10 active:scale-95"
+              className="h-8 w-8 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 active:scale-95"
               title="Share"
               aria-label="Share output"
             >
@@ -95,7 +95,7 @@ export const OutputPanel = ({
               variant="ghost"
               onClick={onCopy}
               disabled={!outputText || isLoading}
-              className="h-8 w-8 rounded-lg transition-all duration-200 hover:bg-primary/10 active:scale-95"
+              className="h-8 w-8 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 active:scale-95"
               title="Copy (Ctrl+Shift+C)"
               aria-label="Copy output to clipboard"
             >
@@ -106,7 +106,7 @@ export const OutputPanel = ({
               variant="ghost"
               onClick={onDownload}
               disabled={!outputText || isLoading}
-              className="h-8 w-8 rounded-lg transition-all duration-200 hover:bg-primary/10 active:scale-95"
+              className="h-8 w-8 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 active:scale-95"
               title="Download"
               aria-label="Download output as text file"
             >
@@ -117,7 +117,7 @@ export const OutputPanel = ({
               variant="ghost"
               onClick={onRewrite}
               disabled={!outputText || isLoading}
-              className="h-8 w-8 rounded-lg transition-all duration-200 hover:bg-primary/10 active:scale-95"
+              className="h-8 w-8 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 active:scale-95"
               title="Rewrite"
               aria-label="Use output as new input"
             >
