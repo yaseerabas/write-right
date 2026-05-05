@@ -55,12 +55,8 @@ const SettingsModal = () => {
           </DialogTitle>
         </DialogHeader>
         <div className="space-y-5">
-          <p className="text-sm text-muted-foreground">
-            AI configuration is managed server-side for security.
-          </p>
-
           {/* Clear all data section */}
-          <div className="pt-4 border-t border-border">
+          <div>
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
